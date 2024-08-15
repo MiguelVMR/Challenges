@@ -21,8 +21,8 @@ public class SwaggerConfiguration {
 
     private Info info() {
         return new Info()
-                .title("Projeto Agenda")
-                .description("Projeto para o gerenciamento compromissos")
+                .title("Commitment Project")
+                .description("Project for commitment management")
                 .version("1.0");
     }
 }
