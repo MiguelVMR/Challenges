@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD", "pg_isready" ]
+      interval: 10s
+      timeout: 15s
+      retries: 5
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234@Mudar
+      - POSTGRES_MULTIPLE_DATABASES=agenda
+    volumes:
+      - ./docker_postgres_init.sh:/docker-entrypoint-initdb.d/docker_postgres_init.sh
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=root
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin:rw
+
+volumes:
+  postgres:
+    external: false
+  pgadmin:
+    external: false

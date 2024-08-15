@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: agenda
+  datasource:
+    url: jdbc:postgresql://localhost:5432/agenda
+    username: postgres
+    password: 1234@Mudar
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        time_zone: America/Sao_Paulo
+    hibernate:
+      ddl-auto: update
