@@ -52,6 +52,10 @@ public class GenericSchema {
         return disabled;
     }
 
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
     }

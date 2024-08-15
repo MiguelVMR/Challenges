@@ -37,6 +37,7 @@ public interface CommitmentRepository extends JpaRepository<CommitmentSchema, UU
     @Query("""
             UPDATE CommitmentSchema c
             SET c.disabled = TRUE, c.disabledAt = CURRENT_TIMESTAMP, c.updatedAt = CURRENT_TIMESTAMP
+            WHERE c.id = :id
             """)
-    void disable(UUID id);
+    void disable(@Param("id")UUID id);
 }

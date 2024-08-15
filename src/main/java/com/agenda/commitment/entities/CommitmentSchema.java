@@ -27,7 +27,7 @@ public class CommitmentSchema extends GenericSchema {
     @Column(length = 30, nullable = false)
     private LocalDate date;
 
-    @Column(length = 20, nullable = false)
+    @Column( name = "hours",length = 20, nullable = false)
     private String hour;
 
     @Column(columnDefinition = "TEXT", nullable = false)

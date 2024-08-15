@@ -1,5 +1,6 @@
 package com.agenda.commitment.boundary;
 
+import com.agenda.commitment.controls.CommitmentGateway;
 import com.agenda.commitment.entities.Commitment;
 import com.agenda.utils.CustomPageable;
 import io.swagger.v3.oas.annotations.Operation;
@@ -23,17 +24,17 @@ import java.util.UUID;
 @Tag(name = "Commitment module")
 public class CommitmentController {
 
-    private final CommitmentBusiness commitmentBusiness;
+    private final CommitmentGateway commitmentGateway;
 
-    public CommitmentController(CommitmentBusiness commitmentBusiness) {
-        this.commitmentBusiness = commitmentBusiness;
+    public CommitmentController(CommitmentGateway commitmentGateway) {
+        this.commitmentGateway = commitmentGateway;
     }
 
     @Operation(summary = "Endpoint responsible for creating a new commitment")
     @PostMapping
     public ResponseEntity<Void> save(@RequestBody @Valid Commitment commitment) {
 
-        commitmentBusiness.save(commitment);
+        commitmentGateway.save(commitment);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -42,7 +43,7 @@ public class CommitmentController {
     @GetMapping
     public ResponseEntity<Commitment> findById(@RequestParam(name = "id") UUID id) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(commitmentBusiness.findById(id));
+        return ResponseEntity.status(HttpStatus.OK).body(commitmentGateway.findById(id));
     }
     @Operation(summary = "Endpoint responsible for obtaining all commitment")
     @GetMapping("all")
@@ -53,14 +54,14 @@ public class CommitmentController {
             @RequestParam(name = "filter", required = false, defaultValue = "") String filter
     ) {
 
-        return ResponseEntity.status(HttpStatus.OK).body(commitmentBusiness.findAll(filter, CustomPageable.getInstance(page, size, sorting)));
+        return ResponseEntity.status(HttpStatus.OK).body(commitmentGateway.findAll(filter, CustomPageable.getInstance(page, size, sorting)));
     }
 
     @Operation(summary = "Endpoint responsible for delete commitment")
     @DeleteMapping
     public ResponseEntity<Void> disable(@RequestParam(name = "id") UUID id) {
 
-        commitmentBusiness.disable(id);
+        commitmentGateway.disable(id);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -71,7 +72,7 @@ public class CommitmentController {
             @RequestParam(name = "id") UUID id,
            @RequestBody @Valid Commitment commitment
     ) {
-        commitmentBusiness.update(id, commitment);
+        commitmentGateway.update(id, commitment);
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
