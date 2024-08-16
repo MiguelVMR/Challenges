@@ -45,6 +45,7 @@ public class CommitmentController {
 
         return ResponseEntity.status(HttpStatus.OK).body(commitmentGateway.findById(id));
     }
+
     @Operation(summary = "Endpoint responsible for obtaining all commitment")
     @GetMapping("all")
     public ResponseEntity<Page<Commitment>> findAll(
@@ -68,12 +69,11 @@ public class CommitmentController {
 
     @Operation(summary = "Endpoint responsável por editar um médico")
     @PatchMapping
-    public ResponseEntity<Void> update(
+    public ResponseEntity<Commitment> update(
             @RequestParam(name = "id") UUID id,
            @RequestBody @Valid Commitment commitment
     ) {
-        commitmentGateway.update(id, commitment);
 
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.status(HttpStatus.OK).body(commitmentGateway.update(id, commitment));
     }
 }
