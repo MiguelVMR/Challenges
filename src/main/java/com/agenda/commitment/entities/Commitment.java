@@ -32,7 +32,7 @@ public class Commitment extends Generic {
     private UUID id;
 
     @NotNull(message = "Commitment date is mandatory")
-    @JsonFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate date;
 
     @ValidTime

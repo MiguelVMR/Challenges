@@ -24,8 +24,8 @@ public class CommitmentGateway {
     }
 
 
-    public void save(Commitment commitment) {
-        commitmentRepository.save(CommitmentMapper.toEntity(commitment));
+    public Commitment save(Commitment commitment) {
+       return CommitmentMapper.toDTO(commitmentRepository.save(CommitmentMapper.toEntity(commitment)));
     }
 
 

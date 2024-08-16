@@ -32,11 +32,9 @@ public class CommitmentController {
 
     @Operation(summary = "Endpoint responsible for creating a new commitment")
     @PostMapping
-    public ResponseEntity<Void> save(@RequestBody @Valid Commitment commitment) {
+    public ResponseEntity<Commitment> save(@RequestBody @Valid Commitment commitment) {
 
-        commitmentGateway.save(commitment);
-
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        return ResponseEntity.status(HttpStatus.OK).body(commitmentGateway.save(commitment));
     }
 
     @Operation(summary = "Endpoint responsible for obtaining a commitment")

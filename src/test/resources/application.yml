@@ -1,11 +1,13 @@
+server:
+  port: 8888
+
 spring:
   datasource:
-    url: jdbc:h2:~/testdb;DB_CLOSE_ON_EXIT=FALSE
-    username: sab
-    password:
-    driver-class-name: org.h2.Driver
+    driver-class-name: org.postgresql.Driver
   jpa:
-    show-sql: true
     properties:
       hibernate:
-        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        time_zone: America/Sao_Paulo
+    hibernate:
+      ddl-auto: update

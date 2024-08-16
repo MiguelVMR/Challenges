@@ -1,5 +1,6 @@
 package com.agenda.commitment.controls;
 
+import com.agenda.commitment.configuration.AbstractIntegrationTest;
 import com.agenda.commitment.entities.CommitmentSchema;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -7,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +21,8 @@ import java.util.Objects;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-class CommitmentRepositoryTest {
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+class CommitmentRepositoryTest extends AbstractIntegrationTest {
 
     @Autowired
     private CommitmentRepository commitmentRepository;
